@@ -1,0 +1,16 @@
+{
+  "name": "understanding-ts",
+  "version": "1.0.0",
+  "description": "udemy 'understanding-typescript' tutorial code along",
+  "main": "app.js",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "lullabyX",
+  "license": "ISC"
+}
