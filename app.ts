@@ -1,21 +1,24 @@
-enum Role { ADMIN, READ_ONLY, AUTHOR}
-// enum Role { ADMIN = 5, READ_ONLY, AUTHOR} // starts with 5
-// enum Role { ADMIN='admin', READ_ONLY = 5, AUTHOR = 'author'} 
+function combine(input1: string | number, input2: string | number) {
+  let result: string | number;
 
-
-const person = {
-  name: 'Rabbi',
-  age: 25,
-  hobies: ['Gaming', 'Reading Books'],
-  role: Role.ADMIN
+  // result = input1 + input2 // will throw error because TS knows inputs are union type
+                          // but doesn't know what exact type it is and if it can be
+                          // added together
+  if (typeof input1 === 'number' && typeof input2 === 'number')
+  {
+    result = input1 + input2;
+  } else
+  {
+    result = input1.toString() + input2.toString();
+  }
+  
+  return result
 }
 
-if (person.role === Role.AUTHOR)
-{
-  console.log("the person is author");
-  
-  }
+const ageCombine = combine(20, 30);
+const nameCombine = combine('Hassan', 'Rabbi')
 
 console.log('====================================');
-console.log(person.role);
+console.log(ageCombine);
+console.log(nameCombine);
 console.log('====================================');
