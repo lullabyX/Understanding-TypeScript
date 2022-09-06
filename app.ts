@@ -1,18 +1,21 @@
-const person: {
-  name: string;
-  age: number;
-  hobies: string[];
-  roles: [number, string]
-} = {
-// const person = { // infered if specific object type is not assigned
+enum Role { ADMIN, READ_ONLY, AUTHOR}
+// enum Role { ADMIN = 5, READ_ONLY, AUTHOR} // starts with 5
+// enum Role { ADMIN='admin', READ_ONLY = 5, AUTHOR = 'author'} 
+
+
+const person = {
   name: 'Rabbi',
   age: 25,
   hobies: ['Gaming', 'Reading Books'],
-  roles: [2, 'author']
+  role: Role.ADMIN
 }
 
-// person.roles.push('Engineer') // !!! Exception: be mindful it works !!!
-// person.roles[1] = 35 !! ERROR !!
+if (person.role === Role.AUTHOR)
+{
+  console.log("the person is author");
+  
+  }
+
 console.log('====================================');
-console.log(person.roles);
+console.log(person.role);
 console.log('====================================');
