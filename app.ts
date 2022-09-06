@@ -1,19 +1,26 @@
-function add(n1: number, n2: number, printResult: boolean, prefix: string)
-{
-  const result = n1 + n2;
-  if (printResult)
-  {
-    console.log('====================================');
-    console.log(prefix + result);
-    console.log('====================================');
-  } else 
-    return result
+const person: {
+  name: string;
+  age: number;
+} = {
+// const person = { // infered if specific object type is not assigned
+  name: 'Rabbi',
+  age: 25,
 }
 
-let number1 = 3 // type inference, ts infers number1 is type of 'number'
-const number2 = 4.5 // type inference, ts infers number2 is type of 4.5, since number2 is constant and can't change
-const printResult = true
-let aValue: number // type assignment
-aValue = 10
+const car: object = { // car is of generic object type
+  manufacturer: 'Karin',
+  model: 'Kuruma'
+}
 
-add(number1, number2, printResult, 'Result is: ');
+const house: {} = { // house is of generic obejct type
+  price: 211232,
+  location: 'address'
+}
+
+console.log('====================================');
+console.log(person.name);
+console.log(car.manufacturer); // ts throws error because car is generic object type and
+                              // doesn't know property manufacturer
+console.log(house.price); // throws error for above same reason
+
+console.log('====================================');
