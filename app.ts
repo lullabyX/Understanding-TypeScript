@@ -1,26 +1,20 @@
-const person: {
-  name: string;
-  age: number;
-} = {
+const person = {
 // const person = { // infered if specific object type is not assigned
   name: 'Rabbi',
   age: 25,
+  hobies: ['Gaming', 'Reading Books', 32]
 }
 
-const car: object = { // car is of generic object type
-  manufacturer: 'Karin',
-  model: 'Kuruma'
-}
+let favoriteActivities: string[];
+favoriteActivities = ['Gaming']
 
-const house: {} = { // house is of generic obejct type
-  price: 211232,
-  location: 'address'
-}
+for (const hobby in person.hobies)
+{
+  console.log(hobby.toUpperCase); // here typescript's type inferece detect hoppy is a type of string
+                                  // and suggest string methods for auto completion
+  
+  }
 
 console.log('====================================');
 console.log(person.name);
-console.log(car.manufacturer); // ts throws error because car is generic object type and
-                              // doesn't know property manufacturer
-console.log(house.price); // throws error for above same reason
-
 console.log('====================================');
