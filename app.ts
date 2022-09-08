@@ -11,7 +11,8 @@ function combine(
   // but doesn't know what exact type it is and if it can be
   // added together
   if (
-    typeof input1 === "number" && typeof input2 === "number" &&
+    typeof input1 === "number" &&
+    typeof input2 === "number" &&
     conversion !== "add-text"
   ) {
     result = input1 + input2;
@@ -21,6 +22,21 @@ function combine(
 
   return result;
 }
+
+let addNumber: (a: number, b: number, cb: (c: number) => void) => void;
+
+function add(num1: number, num2: number, cb: (a: number) => void) {
+  const result = num1 + num2;
+  cb(result);
+}
+
+function printResult(result: number) {
+  console.log(result)
+}
+
+addNumber = add;
+
+addNumber(30, 34, printResult)
 
 const ageCombine = combine(20, 30, "add-text");
 const nameCombine = combine("Hassan", "Rabbi", "add-text");
