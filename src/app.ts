@@ -17,8 +17,9 @@ abstract class Department {
 }
 
 class ITDepartment extends Department {
+  private static instance: ITDepartment
   // I don't need to declare attributes if I use shortcut
-  constructor(id: string, public admins: string[]) {
+  private constructor(id: string, public admins: string[]) {
     // if you declare access modifier(public/private), you
     // can have shortcut where you don't need to declare
     // and assign this.that = that
@@ -29,9 +30,18 @@ class ITDepartment extends Department {
   showDetail(): void {
       console.log(this);  
   }
+
+  static getInstance() {
+    if (this.instance)
+    {
+      return this.instance
+    }
+    this.instance = new ITDepartment('d1', [])
+    return this.instance;
+  }
 }
 
-const it = new ITDepartment("d1", ["Max", "Hassan"]);
+const it = ITDepartment.getInstance();
 
 it.showDetail();
 
@@ -40,10 +50,12 @@ it.addEmployee("Jerry", "Tom");
 it.showDetail();
 
 class AccountingDepartment extends Department {
+  private static instance: AccountingDepartment;
   static motto = 'Count that we do!'
   private latestReport = ''
   private reports: string[] = [];
-  constructor(id: string) {
+
+  private constructor(id: string) {
     super(id, "Accounting");
   }
 
@@ -77,9 +89,16 @@ class AccountingDepartment extends Department {
       console.log(this);
       console.log('====================================');
   }
+
+  static getInstance() {
+    if (this.instance)
+      return this.instance
+    this.instance = new AccountingDepartment('d2')
+    return this.instance
+  }
 }
 
-const accounting = new AccountingDepartment("d2");
+const accounting = AccountingDepartment.getInstance()
 accounting.addEmployee("Max", "Segan");
 accounting.addReport("Good");
 
