@@ -2,7 +2,7 @@ class Department {
   name: string
   private employees: string[] = []
 
-  constructor (n: string) {
+  constructor (public readonly id: string, n: string) {
     this.name = n
   }
 
@@ -20,16 +20,50 @@ class Department {
   }
 }
 
-const accounting = new Department('Accounting');
+class ITDepartment extends Department {
+  // I don't need to declare attributes if I use shortcut
+  constructor (id: string, public admins: string[]) { // if you declare access modifier(public/private), you
+                                                      // can have shortcut where you don't need to declare
+                                                      // and assign this.that = that
+    super(id, 'IT');
+    // here I don't need to assign this.admins = admins because of above reason
+  }
+}
 
-accounting.showDetail()
+const it = new ITDepartment('d1', ['Max', 'Hassan']);
 
-accounting.addEmployee('Jerry', 'Tom')
+it.showDetail()
 
-accounting.showDetail()
+it.addEmployee('Jerry', 'Tom')
+
+it.showDetail()
+
+class AccountingDepartment extends Department {
+  private reports: string[] = []
+  constructor (id: string) {
+    super(id, 'Accounting');
+  }
+
+  addReport(report: string) {
+    this.reports.push(report)
+  }
+
+  printReport() {
+    console.log(this.reports);
+    
+  }
+}
+
+const accounting = new AccountingDepartment('d2')
+accounting.addEmployee('Carl', 'Segan')
+accounting.addReport('Good')
+
+const something = {addEmployee: it.addEmployee}
+
+console.log(it);
+console.log(accounting);
 
 
-const something = {addEmployee: accounting.addEmployee}
 
 // something.addEmployee('Jerry') // throws error because of 'this' in param, something doesn't have employee proterty
 // console.log(accounting.employees); // throws error because 'employees' is private
