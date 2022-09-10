@@ -40,6 +40,8 @@ it.addEmployee("Jerry", "Tom");
 it.showDetail();
 
 class AccountingDepartment extends Department {
+  static motto = 'Count that we do!'
+  private latestReport = ''
   private reports: string[] = [];
   constructor(id: string) {
     super(id, "Accounting");
@@ -55,16 +57,32 @@ class AccountingDepartment extends Department {
 
   addReport(report: string) {
     this.reports.push(report);
+    this.latestReport = report
   }
 
   printReport() {
     console.log(this.reports);
+  }
+
+  get mostRecent() {
+    return this.latestReport
+  }
+
+  set mostRecent(report: string) {
+    this.addReport(report)
   }
 }
 
 const accounting = new AccountingDepartment("d2");
 accounting.addEmployee("Max", "Segan");
 accounting.addReport("Good");
+
+console.log(accounting.mostRecent); // getter setter
+accounting.mostRecent = "Bad";
+console.log(accounting.mostRecent);
+
+console.log(AccountingDepartment.motto); // static
+
 
 const something = { addEmployee: it.addEmployee };
 
