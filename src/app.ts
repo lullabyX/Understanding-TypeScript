@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   name: string;
   protected employees: string[] = [];
 
@@ -13,11 +13,7 @@ class Department {
     this.employees.push(...employee);
   }
 
-  showDetail(this: Department) {
-    console.log("Department: " + this.name);
-    console.log("Number of employees: " + this.employees.length);
-    console.log("Employees: " + this.employees);
-  }
+  abstract showDetail(): void;
 }
 
 class ITDepartment extends Department {
@@ -28,6 +24,10 @@ class ITDepartment extends Department {
     // and assign this.that = that
     super(id, "IT");
     // here I don't need to assign this.admins = admins because of above reason
+  }
+
+  showDetail(): void {
+      console.log(this);  
   }
 }
 
@@ -71,6 +71,12 @@ class AccountingDepartment extends Department {
   set mostRecent(report: string) {
     this.addReport(report)
   }
+
+  showDetail(): void {
+      console.log('====================================');
+      console.log(this);
+      console.log('====================================');
+  }
 }
 
 const accounting = new AccountingDepartment("d2");
@@ -86,8 +92,8 @@ console.log(AccountingDepartment.motto); // static
 
 const something = { addEmployee: it.addEmployee };
 
-console.log(it);
-console.log(accounting);
+it.showDetail()
+accounting.showDetail()
 
 // something.addEmployee('Jerry') // throws error because of 'this' in param, something doesn't have employee proterty
 // console.log(accounting.employees); // throws error because 'employees' is private
