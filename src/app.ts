@@ -111,7 +111,7 @@ const sparrow: Animal = {
 }
 
 function printAnimalDetail(animal: Animal) {
-  let speed: number;
+  let speed;
   switch (animal.type) {
     case "bird":
       speed = animal.flyingSpeed;
@@ -122,9 +122,10 @@ function printAnimalDetail(animal: Animal) {
     default:
       break;
   }
-  console.log('The speed of the animal is: ' speed);
+  console.log('The speed of the animal is: ' + speed);
   
 }
 
 printAnimalDetail(sparrow);
+printAnimalDetail({type: "horse", runningSpeed: 80})
 
