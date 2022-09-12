@@ -91,4 +91,40 @@ function callVehicle(vehicle: Vehicle) {
 
 callVehicle(bumblebee)
 
+// disciminated unions
+
+interface Bird {
+  type: 'bird'
+  flyingSpeed: number
+}
+
+interface Horse {
+  type: 'horse';
+  runningSpeed: number
+}
+
+type Animal = Bird | Horse;
+
+const sparrow: Animal = {
+  type: "bird",
+  flyingSpeed: 12
+}
+
+function printAnimalDetail(animal: Animal) {
+  let speed: number;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+    default:
+      break;
+  }
+  console.log('The speed of the animal is: ' speed);
+  
+}
+
+printAnimalDetail(sparrow);
 
