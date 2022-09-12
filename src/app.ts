@@ -1,8 +1,11 @@
-// typecasting way 1, but conflicts with react
-// const userInput = <HTMLInputElement> document.getElementById('user-input')!;
+interface ErrorContainer {
+  // id: string; you can have some predefined key:type pair as well but types must match
+  [prop: string]: string;
+}
 
-// typecasting way 2
-const userInput = document.getElementById('user-input') as HTMLInputElement
-
-userInput.value = 'hello there'
+const errorBag: ErrorContainer = {
+  email: 'There should be a valid email',
+  username: 'Must start with letter',
+  password: 'Atleast 69 characters long'
+}
 
