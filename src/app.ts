@@ -4,7 +4,15 @@ function Logger(constructor: Function) {
   
 }
 
+function Factory(element: string, hookId: string) {
+  return (_: Function) => {
+    const hookEl = document.getElementById(hookId)!;
+    hookEl.innerHTML = element
+  }
+}
+
 @Logger
+@Factory('<h1>This is a header</h1>', 'app')
 class Car {
   name: string;
   constructor (t: string) {
