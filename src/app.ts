@@ -32,6 +32,21 @@ function PropertyDecorator(target: any, name: string) {
   
 }
 
+function AccessorDecorator(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log('Accessor Decorator');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+  
+}
+
+function ParameterDecorator(target: any, name: string, position: number) {
+  console.log('Parameter Decorator...');
+  console.log(target);
+  console.log(name);
+  console.log(position);
+}
+
 @Logger
 @Header("<h1>This is a header</h1>", "app")
 @CarHeader('another')
@@ -48,11 +63,16 @@ class Car {
     this._price = p
   }
 
+  @AccessorDecorator
+  get price() {
+    return this._price
+  }
+
   printName() {
     console.log(`name is ${this.name}`);
   }
 
-  calculateTax(tax: number) {
+  calculateTax(@ParameterDecorator tax: number) {
     return this._price * (1+tax)
   }
 }
