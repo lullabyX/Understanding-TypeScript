@@ -1,11 +1,22 @@
-function mergeObject<T extends object, U>(obj1: T, obj2: U){
-  // return {...obj1, ...obj2}
-  return Object.assign(obj1, obj2) // it will throw error if constrained on Object.assign first param
-                                  // is not object
+interface Lengthy {
+  length: number
 }
 
-let combined = mergeObject({ firstName: "hassan", age: 30, hobbies: ['games'] }, { lastName: "rabbi" });
+function countAndDescribe<T extends Lengthy>(element: T) {
+  let descriptionText = 'Got no description yet';
+  if (element.length === 1)
+    descriptionText = `Got 1 element`
+  else if (element.length)
+  {
+    descriptionText = `Got ${element.length} elements`
+  }
 
-// console.log(combined.firstName); // throws error if no function generic is set
+  return [element, descriptionText]
+}
 
-console.log(combined);
+console.log(countAndDescribe(['Hello', 'There']));
+console.log(countAndDescribe('Hello there'));
+// console.log(countAndDescribe({firstName: 'hassan'}));  // throws error because object doesn't have property
+                                                          // length
+
+
