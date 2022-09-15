@@ -1,22 +1,19 @@
-interface Lengthy {
-  length: number
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return `${String(key)} are ${obj[key]}`;
 }
 
-function countAndDescribe<T extends Lengthy>(element: T) {
-  let descriptionText = 'Got no description yet';
-  if (element.length === 1)
-    descriptionText = `Got 1 element`
-  else if (element.length)
-  {
-    descriptionText = `Got ${element.length} elements`
-  }
+const torkari = {
+  masala: ["holud, morich, peyaj"],
+  sabji: ["alu", "potol"],
+  "non-veg": ["murgi", "dim"],
+  $_$: 'prochur taka'
+};
 
-  return [element, descriptionText]
-}
+let extractedValue = extractAndConvert(torkari, 'masala')
 
-console.log(countAndDescribe(['Hello', 'There']));
-console.log(countAndDescribe('Hello there'));
-// console.log(countAndDescribe({firstName: 'hassan'}));  // throws error because object doesn't have property
-                                                          // length
+console.log(extractedValue);
 
 
