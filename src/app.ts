@@ -19,27 +19,43 @@ function CarHeader(hookId: string) {
   return (constructor: any) => {
     console.log("CarHeader logging...");
 
-    const p = new constructor("Karin Kuruma");
+    const p = new constructor("Karin Kuruma", 10000);
     const hookEl = document.getElementById(hookId)!;
     hookEl.textContent = p.name;
   };
+}
+
+function PropertyDecorator(target: any, name: string) {
+  console.log('Property Decorator...');
+  console.log(target);
+  console.log(name);
+  
 }
 
 @Logger
 @Header("<h1>This is a header</h1>", "app")
 @CarHeader('another')
 class Car {
+  @PropertyDecorator // gets the constructor of the class as target
+  static type = 'Japanese'
+  @PropertyDecorator // gets the prototype of the class as target
   name: string;
-  constructor(t: string) {
+  private _price: number
+  constructor(t: string, p: number) {
     console.log("Initializing a car instance...");
 
     this.name = t;
+    this._price = p
   }
 
   printName() {
     console.log(`name is ${this.name}`);
   }
+
+  calculateTax(tax: number) {
+    return this._price * (1+tax)
+  }
 }
 
-const car1 = new Car('Kuruma');
+const car1 = new Car('Kuruma', 10000);
 car1.printName();
