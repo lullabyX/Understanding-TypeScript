@@ -75,3 +75,32 @@ class Car {
 
 const car1 = new Car( 'Karin', 10000);
 car1.printName();
+
+
+function Autobind(_: any, _2: string | Symbol | number, descriptor: PropertyDescriptor):PropertyDescriptor {
+  const originalMethod = descriptor.value;
+  return {
+    configurable: true,
+    enumerable: false,
+    get() {
+      return originalMethod.bind(this)
+    }
+  }
+}
+
+class Printer {
+  message = 'This works!';
+
+  @Autobind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+
+const clickMe = document.getElementById('button');
+
+clickMe?.addEventListener('click', p.showMessage)
+
+
