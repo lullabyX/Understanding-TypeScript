@@ -1,5 +1,5 @@
-import {Project, ProjectType} from "../class/project.js";
-import {ListenerFn, State} from "./state.js";
+import {Project, ProjectType} from "../class/project";
+import {ListenerFn, State} from "./state";
 
 
 // Project State Class

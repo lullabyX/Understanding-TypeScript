@@ -1,8 +1,8 @@
-import {Project, ProjectType} from "../class/project.js";
-import {Autobind} from "../decorators/autobind.js";
-import {projectState} from "../states/project-state.js";
-import {ValidateObj, Validator} from "../utils/validation.js";
-import {Content} from "./base-class.js";
+import { Project, ProjectType } from "../class/project";
+import { Autobind } from "../decorators/autobind";
+import { projectState } from "../states/project-state";
+import { ValidateObj, Validator } from "../utils/validation";
+import { Content } from "./base-class";
 
 // Project Input Class
 export class ProjectInput extends Content<HTMLDivElement, HTMLFormElement> {
