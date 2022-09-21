@@ -2,6 +2,10 @@ import _ from "lodash";
 import "reflect-metadata";
 import { plainToClass } from "class-transformer";
 import {Product} from './product-model'
+import { validate } from "class-validator";
+
+
+
 const arr = [1, 2, 3];
 
 console.log(_.shuffle(arr));
@@ -22,10 +26,16 @@ const products = [
   },
 ];
 
-const productsClass = plainToClass(Product, products);
+const p = new Product('', 2.99);
 
-for (let product of productsClass)
-{
-  console.log(product.getInformation());
-  
-}
+validate(p).then(error => {
+  if (error.length > 0)
+  {
+    console.log(error);
+    
+  } else
+  {
+    console.log(p);
+    
+  }
+})
