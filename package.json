@@ -4,6 +4,7 @@
   "description": "udemy 'understanding-typescript' tutorial code along",
   "main": "app.js",
   "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "lite-server": "^2.6.1"
   },
   "devDependencies": {
@@ -16,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve",
-    "build": "webpack"
+    "build": "webpack --config webpack.config.prod.js"
   },
   "author": "lullabyX",
   "license": "ISC"
