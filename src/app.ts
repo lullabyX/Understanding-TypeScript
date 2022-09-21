@@ -1,3 +1,5 @@
-console.log('====================================');
-console.log('Trying out typescript');
-console.log('====================================');
+import _ from 'lodash';
+
+const arr = [1, 2, 3]
+
+console.log(_.shuffle(arr));
